@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-bootstrap",
-  "version": "v0.0.2",
-  "description": "Redux React Bootstrap",
+  "name": "InternArena",
+  "version": "v0.0.1",
+  "description": "JrCs internsider i React",
   "main": "index.js",
   "dependencies": {
     "es6-promise": "^3.1.2",
@@ -56,6 +56,6 @@
     ]
   },
   "keywords": [],
-  "author": "Darius Grigalevicius <darius.grigalevicius@gmail.com>",
-  "license": "ISC"
+  "author": "Øyvind Robertsen",
+  "license": "Proprietary"
 }
