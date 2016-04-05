@@ -11,16 +11,18 @@ require('../../styles/login/LoginPage.scss');
 class LoginPage extends React.Component {
   render() {
     return (
-      <Grid>
-        <Col sm={6} smOffset={3} md={4} mdOffset={4} xs={8} xsOffset={2} className="login-form">
-          <Row>
-            <img src={jrcLogo} alt="JrC Logo" className="img-responsive" id="logo" />
-          </Row>
-          <Row>
-          <LoginFormComponent next={this.props.location.query.next || '/'}/>
-          </Row>
-        </Col>
-      </Grid>
+      <div className="login-container">
+        <Grid>
+          <Col sm={6} smOffset={3} md={4} mdOffset={4} xs={8} xsOffset={2} className="login-form">
+            <Row>
+              <img src={jrcLogo} alt="JrC Logo" className="img-responsive" id="logo" />
+            </Row>
+            <Row>
+            <LoginFormComponent next={this.props.location.query.next || '/'}/>
+            </Row>
+          </Col>
+        </Grid>
+      </div>
     );
   }
 }
