@@ -5,33 +5,6 @@
 
 .login-form {
 
-    /*
-    .usericon {
-        display: block;
-        width: 14px;
-        height: 14px;
-        background-position: -48px 0;
-        position: absolute;
-        padding-left: 20px;
-        padding-top: 17px;
-        opacity: 1.0;
-        z-index: 1000;
-        color: #ffffff;
-    }
-
-    .lockicon {
-        display: block;
-        width: 14px;
-        height: 14px;
-        background-position: -48px 0;
-        position: absolute;
-        padding-left: 20px;
-        padding-top: 18px;
-        opacity: 1.0;
-        z-index: 1000;
-        color: #ffffff;
-    }
-*/
     .input-group-addon {
         background: none;
         color: white;
@@ -41,10 +14,13 @@
         padding-left: 25px;
     }
 
+    input:not([type="submit"]) {
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
     input {
         height: 55px;
         //border-radius: 50px;
-        background-color: rgba(0, 0, 0, 0.2);
         border: none;
         color: #ffffff;
 
@@ -64,16 +40,4 @@
             color: #ffffff !important;
         }
     } 
-    
-    button {
-        height: 55px;
-        //border-radius: 50px;
-        background-color: #CD2027;
-        border: none;
-        color: #ffffff;
-    }
-
-    i {
-        color: #ffffff;
-    }
 }
