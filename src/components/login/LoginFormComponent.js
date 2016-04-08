@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import reactMixin from 'react-mixin';
 import {ButtonInput, Input, Alert, Glyphicon} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
@@ -17,6 +16,16 @@ class LoginFormComponent extends React.Component {
       password: '',
       redirectTo: props.next
     };
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+  }
+
+  handleUsernameChange(e) {
+    this.setState({username: e.target.value});
+  }
+
+  handlePasswordChange(e) {
+    this.setState({password: e.target.value});
   }
 
   login(e) {
@@ -33,15 +42,13 @@ class LoginFormComponent extends React.Component {
          ? <Alert bsStyle="danger">{this.props.statusText}</Alert>
          : null
         }
-          <Input type="text" placeholder="Brukernavn" className="username" valueLink={this.linkState('username')} addonBefore={innerUserIcon} />
-        <Input type="password" placeholder="Passord" className="password" valueLink={this.linkState('password')} addonBefore={innerLockIcon} />
+        <Input type="text" placeholder="Brukernavn" className="username" value={this.state.username} onChange={this.handleUsernameChange} addonBefore={innerUserIcon} />
+        <Input type="password" placeholder="Passord" className="password" value={this.state.password} onChange={this.handlePasswordChange} addonBefore={innerLockIcon} />
           <ButtonInput type="submit" className="form-control" bsStyle="danger" block disabled={this.props.isAuthenticating} value="Logg inn" />
         </form>
     );
   }
 }
-
-reactMixin(LoginFormComponent.prototype, LinkedStateMixin);
 
 const mapStateToProps = (state) => ({
   isAuthenticating: state.auth.isAuthenticating,

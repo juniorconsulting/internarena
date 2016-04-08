@@ -76,8 +76,6 @@ export function loginUser(username, password, redirect="/") {
       .then(parseJSON)
       .then(json => {
         // Check token
-        console.log(json);
-        console.log(json.token);
         if (json.token) {
           dispatch(loginUserSuccess(json.token, json.userid));
           dispatch(push(redirect));
