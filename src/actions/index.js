@@ -1,5 +1,8 @@
 import {LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS} from '../constants';
 import {push} from 'redux-router';
+import {checkStatus, parseJSON} from '../util/Http'
+
+const AUTH_API = 'https://auth.jrc.no'
 
 export function loginUserRequest() {
   return {
@@ -31,38 +34,58 @@ export function loginUserFailure(error) {
   }
 }
 
+export function checkToken(token, redirect="/") {
+  return function(dispatch) {
+    dispatch(loginUserRequest());
+    return fetch(AUTH_API + '/check-token/', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({token: token})
+    }).then(checkStatus)
+      .then(parseJSON)
+      .then(json => {
+        if (json.userid) {
+          dispatch(loginUserSuccess(token, json.userid));
+          dispatch(push(redirect));
+        } else {
+          dispatch(loginUserFailure);
+          dispatch(push('/login'));
+        }
+      })
+      .catch(error => {
+        dispatch(loginUserFailure(error));
+        dispatch(push('/login'));
+      });
+  }
+}
+
 export function loginUser(username, password, redirect="/") {
   return function(dispatch) {
     dispatch(loginUserRequest());
-    return fetch('https://auth.jrc.no/login/', {
+    return fetch(AUTH_API + '/login/', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({username: username, password: password})
-    }).then(response => {
-      // Check status
-      if (response.status >= 200 && response.status < 300) {
-        return response;
-      } else {
-        var error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-      }
-    }).then(response => {
-      // parse JSON data
-      return response.json();
-    }).then(json => {
-      // Check token
-      if (json.token) {
-        dispatch(loginUserSuccess(json.token, json.userid));
-        dispatch(push(redirect));
-      } else {
-        dispatch(loginUserFailure({response: {status: 403, statusText: json}}));
-      }
-    }).catch(error => {
-      dispatch(loginUserFailure(error))
-    });
+    }).then(checkStatus)
+      .then(parseJSON)
+      .then(json => {
+        // Check token
+        console.log(json);
+        console.log(json.token);
+        if (json.token) {
+          dispatch(loginUserSuccess(json.token, json.userid));
+          dispatch(push(redirect));
+        } else {
+          dispatch(loginUserFailure({response: {status: 403, statusText: json}}));
+        }
+      }).catch(error => {
+        dispatch(loginUserFailure(error))
+      });
   };
 }

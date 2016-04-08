@@ -1,6 +1,8 @@
 import React from 'react';
 import {push} from 'redux-router';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actionCreators from '../actions';
 
 export function requireAuthentication(Component) {
   class AuthenticatedComponent extends React.Component {
@@ -14,8 +16,14 @@ export function requireAuthentication(Component) {
 
     checkAuth(isAuthenticated) {
       if (!isAuthenticated) {
+        let token = localStorage.getItem('token');
+        let userid = localStorage.getItem('userid');
         let redirectAfterLogin = this.props.location.pathname;
-        this.props.dispatch(push(`/login?next=${redirectAfterLogin}`));
+        if (token && userid) {
+          this.props.actions.checkToken(token, redirectAfterLogin);
+        } else {
+          this.props.dispatch(push(`/login?next=${redirectAfterLogin}`));
+        }
       }
     }
 
@@ -37,5 +45,10 @@ export function requireAuthentication(Component) {
     isAuthenticated: state.auth.isAuthenticated
   });
 
-  return connect(mapStateToProps)(AuthenticatedComponent);
+  const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(actionCreators, dispatch),
+    dispatch: dispatch
+  });
+
+  return connect(mapStateToProps, mapDispatchToProps)(AuthenticatedComponent);
 }
