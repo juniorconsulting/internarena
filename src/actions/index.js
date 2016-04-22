@@ -1,8 +1,8 @@
 import {LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS} from '../constants';
 import {push} from 'redux-router';
-import {checkStatus, parseJSON} from '../util/Http'
+import {checkStatus, parseJSON} from '../util/Http';
 
-const AUTH_API = 'https://auth.jrc.no'
+const AUTH_API = 'https://auth.jrc.no';
 
 export function loginUserRequest() {
   return {
@@ -19,7 +19,7 @@ export function loginUserSuccess(token, userid) {
       token: token,
       userid: userid
     }
-  }
+  };
 }
 
 export function loginUserFailure(error) {
@@ -31,10 +31,10 @@ export function loginUserFailure(error) {
       status: error.response.status,
       statusText: error.response.statusText
     }
-  }
+  };
 }
 
-export function checkToken(token, redirect="/") {
+export function checkToken(token, redirect = "/") {
   return function(dispatch) {
     dispatch(loginUserRequest());
     return fetch(AUTH_API + '/check-token/', {
@@ -59,10 +59,10 @@ export function checkToken(token, redirect="/") {
         dispatch(loginUserFailure(error));
         dispatch(push('/login'));
       });
-  }
+  };
 }
 
-export function loginUser(username, password, redirect="/") {
+export function loginUser(username, password, redirect = "/") {
   return function(dispatch) {
     dispatch(loginUserRequest());
     return fetch(AUTH_API + '/login/', {
@@ -83,7 +83,7 @@ export function loginUser(username, password, redirect="/") {
           dispatch(loginUserFailure({response: {status: 403, statusText: json}}));
         }
       }).catch(error => {
-        dispatch(loginUserFailure(error))
+        dispatch(loginUserFailure(error));
       });
   };
 }

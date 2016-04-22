@@ -37,15 +37,32 @@ class LoginFormComponent extends React.Component {
     const innerUserIcon = <Glyphicon bsClass="glyphicon usericon" glyph="user" />;
     const innerLockIcon = <Glyphicon bsClass="glyphicon lockicon" glyph="lock" />;
     return (
-        <form className="login-form" onSubmit={this.login.bind(this)}>
-        {this.props.statusText
-         ? <Alert bsStyle="danger">{this.props.statusText}</Alert>
-         : null
+      <form className="login-form" onSubmit={this.login.bind(this)}>
+        {this.props.statusText ?
+          <Alert bsStyle="danger">{this.props.statusText}</Alert> :
+          null
         }
-        <Input type="text" placeholder="Brukernavn" className="username" value={this.state.username} onChange={this.handleUsernameChange} addonBefore={innerUserIcon} />
-        <Input type="password" placeholder="Passord" className="password" value={this.state.password} onChange={this.handlePasswordChange} addonBefore={innerLockIcon} />
-          <ButtonInput type="submit" className="form-control" bsStyle="danger" block disabled={this.props.isAuthenticating} value="Logg inn" />
-        </form>
+        <Input
+           type="text"
+           placeholder="Brukernavn"
+           className="username"
+           value={this.state.username}
+           onChange={this.handleUsernameChange}
+           addonBefore={innerUserIcon} />
+        <Input
+           type="password"
+           placeholder="Passord"
+           className="password"
+           value={this.state.password}
+           onChange={this.handlePasswordChange}
+           addonBefore={innerLockIcon} />
+        <ButtonInput
+           type="submit"
+           className="form-control"
+           bsStyle="danger"
+           disabled={this.props.isAuthenticating}
+           value="Logg inn" block/>
+      </form>
     );
   }
 }

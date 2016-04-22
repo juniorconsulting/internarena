@@ -12,5 +12,5 @@ class Home extends Component {
 }
 
 export default connect((state) => {
-	return {};
+    return {};
 })(Home);

@@ -7,10 +7,10 @@ import routes from './routes';
 import { createHistory, createHashHistory } from 'history';
 
 const finalCreateStore = compose(
-  applyMiddleware(thunkMiddleware),
-  applyMiddleware(createLogger()),
-  reduxReactRouter({ routes, createHistory }),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
+    applyMiddleware(thunkMiddleware),
+    applyMiddleware(createLogger()),
+    reduxReactRouter({ routes, createHistory }),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
 
 const store = finalCreateStore(rootReducer);
