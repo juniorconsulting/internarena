@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import {Link} from 'react-router';
+import {connect} from 'react-redux';
 
 require('../styles/Main.scss');
 
@@ -14,6 +13,6 @@ class App extends Component {
   }
 }
 
-export default connect((state) => {
+export default connect(() => {
   return {};
 })(App);
