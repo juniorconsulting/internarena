@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "extends": ["google", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react"],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "require-jsdoc": ["off", {}],
+    "max-len": ["warn", 120, 2, {}],
+    "react/prop-types": ["off", {}]
+  }
+}
