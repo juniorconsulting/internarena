@@ -1,4 +1,5 @@
 # Internarena
+[![Build Status](http://ci.jrc.no/buildStatus/icon?job=internarena-autobuild)](http://ci.jrc.no/job/internarena-autobuild/)
 
 ## Setup
 
