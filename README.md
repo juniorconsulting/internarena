@@ -11,7 +11,7 @@
 Uses React, Redux and `react-router`.
 
 
-## Todo
+## Development
 
-* Improve login-flow by actually checking token stored in localstorage when requesting a page requiring authentication.
-* Create rest of application.
+Linting, `eslint src/`, should report no errors or warnings before merging changes.
+Also, to make it easier to enforce codestyle, install an [Editorconfig](http://editorconfig.org/)-plugin for your editor.
