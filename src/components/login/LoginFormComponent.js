@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import reactMixin from 'react-mixin';
 import {ButtonInput, Input, Alert, Glyphicon} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -40,39 +39,39 @@ class LoginFormComponent extends React.Component {
       <form className="login-form" onSubmit={this.login.bind(this)}>
         {this.props.statusText ?
           <Alert bsStyle="danger">{this.props.statusText}</Alert> :
-          null
-        }
-        <Input
-           type="text"
-           placeholder="Brukernavn"
-           className="username"
-           value={this.state.username}
-           onChange={this.handleUsernameChange}
-           addonBefore={innerUserIcon} />
-        <Input
-           type="password"
-           placeholder="Passord"
-           className="password"
-           value={this.state.password}
-           onChange={this.handlePasswordChange}
-           addonBefore={innerLockIcon} />
-        <ButtonInput
-           type="submit"
-           className="form-control"
-           bsStyle="danger"
-           disabled={this.props.isAuthenticating}
-           value="Logg inn" block/>
+            null
+          }
+          <Input
+             type="text"
+             placeholder="Brukernavn"
+             className="username"
+             value={this.state.username}
+             onChange={this.handleUsernameChange}
+             addonBefore={innerUserIcon} />
+          <Input
+             type="password"
+             placeholder="Passord"
+             className="password"
+             value={this.state.password}
+             onChange={this.handlePasswordChange}
+             addonBefore={innerLockIcon} />
+          <ButtonInput
+             type="submit"
+             className="form-control"
+             bsStyle="danger"
+             disabled={this.props.isAuthenticating}
+             value="Logg inn" block/>
       </form>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isAuthenticating: state.auth.isAuthenticating,
   statusText: state.auth.statusText
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actionCreators, dispatch)
 });
 
