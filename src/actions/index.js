@@ -1,12 +1,11 @@
-import {LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS} from '../constants';
+import * as types from '../constants';
 import {push} from 'redux-router';
 import {checkStatus, parseJSON} from '../util/Http';
-
-const AUTH_API = 'https://auth.jrc.no';
+import {AUTH_API} from '../config';
 
 export function loginUserRequest() {
   return {
-    type: LOGIN_USER_REQUEST
+    type: types.LOGIN_USER_REQUEST
   };
 }
 
@@ -14,7 +13,7 @@ export function loginUserSuccess(token, userid) {
   localStorage.setItem('token', token);
   localStorage.setItem('userid', userid);
   return {
-    type: LOGIN_USER_SUCCESS,
+    type: types.LOGIN_USER_SUCCESS,
     payload: {
       token: token,
       userid: userid
@@ -26,7 +25,31 @@ export function loginUserFailure(error) {
   localStorage.removeItem('token');
   localStorage.removeItem('userid');
   return {
-    type: LOGIN_USER_FAILURE,
+    type: types.LOGIN_USER_FAILURE,
+    payload: {
+      status: error.response.status,
+      statusText: error.response.statusText
+    }
+  };
+}
+
+export function logoutUserRequest() {
+  return {
+    type: types.LOGOUT_USER_REQUEST
+  };
+}
+
+export function logoutUserSuccess() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userid');
+  return {
+    type: types.LOGOUT_USER_SUCCESS
+  };
+}
+
+export function logoutUserFailure(error) {
+  return {
+    type: types.LOGOUT_USER_FAILURE,
     payload: {
       status: error.response.status,
       statusText: error.response.statusText
@@ -84,6 +107,31 @@ export function loginUser(username, password, redirect = "/") {
         }
       }).catch(error => {
         dispatch(loginUserFailure(error));
+      });
+  };
+}
+
+export function logoutUser(token) {
+  return dispatch => {
+    dispatch(logoutUserRequest());
+    return fetch(AUTH_API + '/logout/', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({token: token})
+    }).then(checkStatus)
+      .then(parseJSON)
+      .then(json => {
+        if (json.body !== 'User logged out') {
+          dispatch(logoutUserFailure({response: {status: 403, statusText: json.body}}));
+        }
+        dispatch(logoutUserSuccess());
+        dispatch(push('/'));
+      })
+      .catch(ex => {
+        dispatch(logoutUserFailure(ex));
       });
   };
 }
