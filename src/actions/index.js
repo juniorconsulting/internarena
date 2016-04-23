@@ -48,6 +48,7 @@ export function logoutUserSuccess() {
 }
 
 export function logoutUserFailure(error) {
+  console.log(error);
   return {
     type: types.LOGOUT_USER_FAILURE,
     payload: {

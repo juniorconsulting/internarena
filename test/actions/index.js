@@ -20,7 +20,7 @@ describe('logoutUser', () => {
 
   it('creates LOGOUT_USER_SUCCESS when successfully logged out', () => {
     nock(AUTH_API)
-      .post('/logout')
+      .post('/logout/')
       .reply(200, {body: "User logged out"});
 
     const expectedActions = [
