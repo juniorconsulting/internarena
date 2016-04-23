@@ -11,7 +11,6 @@
 
 Uses React, Redux and `react-router`.
 
-
 ## Development
 
 Linting, `npm run lint `, should report no errors or warnings before merging changes.
