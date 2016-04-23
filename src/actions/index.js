@@ -48,7 +48,6 @@ export function logoutUserSuccess() {
 }
 
 export function logoutUserFailure(error) {
-  console.log(error);
   return {
     type: types.LOGOUT_USER_FAILURE,
     payload: {
@@ -115,7 +114,7 @@ export function loginUser(username, password, redirect = "/") {
 export function logoutUser(token) {
   return dispatch => {
     dispatch(logoutUserRequest());
-    return fetch(AUTH_API + '/logout', {
+    return fetch(AUTH_API + '/logout/', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
