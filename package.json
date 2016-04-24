@@ -54,7 +54,7 @@
   },
   "scripts": {
     "test": "node_modules/.bin/mocha --compilers js:babel-register --recursive",
-    "test:watch": "npm run mocha -- --watch",
+    "test:watch": "npm run test -- --watch",
     "serve": "node scripts/server.js",
     "lint": "node_modules/.bin/eslint src/"
   },

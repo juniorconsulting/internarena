@@ -2,4 +2,6 @@ node_modules/
 .idea/
 web/app.js
 npm-debug*
+.tern-port
+.tern-project
 .DS_Store

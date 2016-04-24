@@ -4,7 +4,7 @@ import React from 'react';
 import {ButtonInput, Input, Alert, Glyphicon} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as actionCreators from '../../actions';
+import * as authActionCreators from '../../actions/auth';
 
 class LoginFormComponent extends React.Component {
 
@@ -72,7 +72,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actionCreators, dispatch)
+  actions: bindActionCreators(authActionCreators, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginFormComponent);
