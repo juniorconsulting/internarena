@@ -1,6 +1,6 @@
 import * as types from '../constants';
 import {push} from 'redux-router';
-import {checkStatus, parseJSON} from '../util/Http';
+import {checkStatus, parseJSON} from '../util/http';
 import {AUTH_API} from '../config';
 
 export function loginUserRequest() {
@@ -48,7 +48,6 @@ export function logoutUserSuccess() {
 }
 
 export function logoutUserFailure(error) {
-  console.log(error);
   return {
     type: types.LOGOUT_USER_FAILURE,
     payload: {
