@@ -39,6 +39,7 @@
     "expect": "^1.18.0",
     "file-loader": "^0.8.5",
     "image-webpack-loader": "^1.6.2",
+    "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.4.5",
     "nock": "^8.0.0",
     "node-sass": "^3.4.2",
@@ -56,7 +57,8 @@
     "test": "node_modules/.bin/mocha --compilers js:babel-register --recursive",
     "test:watch": "npm run test -- --watch",
     "serve": "node scripts/server.js",
-    "lint": "node_modules/.bin/eslint src/"
+    "lint": "node_modules/.bin/eslint src/",
+    "coverage": "node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- --recursive --compilers js:babel-register --colors --reporter dot test/"
   },
   "babel": {
     "presets": [
