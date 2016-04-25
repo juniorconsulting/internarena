@@ -5,3 +5,4 @@ npm-debug*
 .tern-port
 .tern-project
 .DS_Store
+coverage/
