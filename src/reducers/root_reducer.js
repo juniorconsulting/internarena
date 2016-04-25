@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {routerStateReducer} from 'redux-router';
-import auth from './Auth';
+import auth from './auth';
 
 const rootReducer = combineReducers({
   auth,

@@ -4,7 +4,7 @@ import {Route} from 'react-router';
 // Components
 import App from './components/App';
 import Home from './components/Home';
-import LoginPage from './components/login/LoginPage';
+import LoginPage from './components/auth/LoginPage';
 import {requireAuthentication} from './components/AuthenticatedComponent';
 
 require('styles/Main.scss');
