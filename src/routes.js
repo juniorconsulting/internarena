@@ -7,7 +7,7 @@ import Home from './components/Home';
 import LoginPage from './components/auth/LoginPage';
 import {requireAuthentication} from './components/AuthenticatedComponent';
 
-require('styles/Main.scss');
+require('./styles/Main.scss');
 
 export default (
   <div>

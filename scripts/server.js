@@ -13,12 +13,12 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', function (req, res) {
+app.get('*', function(req, res) {
   console.log(req.url);
-  res.sendFile(path.join(__dirname, '../web/index.html'));
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
-app.listen(3001, 'localhost', function (err) {
+app.listen(3001, 'localhost', function(err) {
   if (err) {
     console.error(err);
     return;
