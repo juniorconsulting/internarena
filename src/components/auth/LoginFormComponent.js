@@ -4,7 +4,7 @@ import React from 'react';
 import {ButtonInput, Input, Alert, Glyphicon} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as authActionCreators from '../../actions/auth';
+import * as authActionCreators from '../../actions';
 
 class LoginFormComponent extends React.Component {
 
