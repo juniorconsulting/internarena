@@ -1,47 +1,56 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const path = require('path');
+
+function getEntrySources(sources) {
+  if (process.env.NODE_ENV !== 'production') {
+    sources.push('webpack-dev-server/client?http://localhost:8080');
+    sources.push('webpack/hot/only-dev-server');
+  }
+
+  return sources;
+}
 
 module.exports = {
-  entry: [
-    'webpack-hot-middleware/client',
-    'webpack/hot/only-dev-server',
-    './src/index.js'
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "react-hot!babel"
-      },
-      {
-        test: /\.scss$/,
-        loaders: ["style", "css?sourceMap", "sass?sourceMap"]
-      },
-      {
-        test: /\.(png|jpg|svg)$/,
-        loader: 'url-loader?limit=250000'
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx', '.jpg'],
-    root: [
-      path.resolve('./src')
-    ]
+  devtool: process.env.NODE_ENV !== 'production' ? 'eval-source-map' : '',
+  entry: {
+    bundle: getEntrySources([
+      './src/index.js'
+    ])
   },
   output: {
-    path: __dirname + '/web',
-    publicPath: 'http://localhost:3001/',
-    filename: 'app.js'
+    path: path.resolve(__dirname, "dist"),
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.DefinePlugin({
+      __DEV__: process.env.NODE_ENV !== 'production',
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })
   ],
-  devServer: {
-    hot: true,
-    inline: true
-  }
+  module: {
+    preLoaders: [{
+      test: /\.js$/,
+      loader: 'source-map-loader'
+    }],
+    loaders: [{
+      test: /\.js$/,
+      loader: 'react-hot!babel!eslint-loader',
+      exclude: /node_modules/
+    }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader!postcss-loader!cssnext-loader'
+    }, {
+      test: /\.scss$/,
+      loader: 'style!css?sourceMap!sass?sourceMap'
+    }, {
+      test: /\.(png|jpg|jpeg|gif|svg)$/,
+      loader: 'url-loader?prefix=img/&limit=53248'
+    }, {
+      test: /\.(woff|woff2|ttf|eot)$/,
+      loader: 'url-loader?prefix=font/&limit=53248'
+    }]
+  },
+  postcss: [autoprefixer({browsers: ['last 2 versions']})]
 };
