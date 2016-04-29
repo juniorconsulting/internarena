@@ -3,6 +3,8 @@ import {push} from 'redux-router';
 import {checkStatus, parseJSON} from '../util/http';
 import {AUTH_API} from '../config';
 
+require('isomorphic-fetch');
+
 export function loginUserRequest() {
   return {
     type: types.LOGIN_USER_REQUEST
