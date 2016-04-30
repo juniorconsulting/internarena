@@ -8,7 +8,6 @@ import {AUTH_API} from '../../src/config';
 import * as types from '../../src/constants/index';
 
 require('../helper');
-require('isomorphic-fetch');
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
