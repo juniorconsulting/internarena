@@ -34,4 +34,22 @@ describe('camelizeProps', () => {
     };
     expect(camelizeProps(orig, "-")).toEqual(camelized);
   });
+
+  it('should work for nested objects', () => {
+    const orig = {
+      'a_b': {
+        'b_c': {
+          'c_d': 1
+        }
+      }
+    };
+    const camelized = {
+      aB: {
+        bC: {
+          cD: 1
+        }
+      }
+    };
+    expect(camelizeProps(orig)).toEqual(camelized);
+  });
 });

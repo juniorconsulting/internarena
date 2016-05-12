@@ -76,7 +76,7 @@ export function checkToken(token, redirect = "/") {
           dispatch(loginUserSuccess(token, json.userid));
           dispatch(push(redirect));
         } else {
-          dispatch(loginUserFailure);
+          dispatch(loginUserFailure());
           dispatch(push('/login'));
         }
       })

@@ -24,7 +24,11 @@ export function camelizeProps(json, delimiter = "_") {
         newKey += word.charAt(0).toUpperCase();
       }
     }
-    newObj[newKey] = json[key];
+    let value = json[key];
+    if (value instanceof Object) {
+      value = camelizeProps(value);
+    }
+    newObj[newKey] = value;
   }
   return newObj;
 }
