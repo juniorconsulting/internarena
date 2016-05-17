@@ -18,7 +18,6 @@ export function getProfileDataSuccess(payload) {
 }
 
 export function getProfileDataFailure(error) {
-  console.log(error);
   return {
     type: types.PROFILE_DATA_FAILURE,
     payload: {
