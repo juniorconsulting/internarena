@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actionCreators from '../actions/auth';
+
+let jrcLogo = require('../images/jr_white.svg');
 
 class Home extends Component {
 
@@ -11,16 +14,26 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        Homepage!
-        <a href="#" onClick={this.logout.bind(this)}>Log out</a>
-      </div>
+      <nav id="navbar">
+        <ul>
+          <li className="left">
+            <a href="#" onClick={this.logout.bind(this)}>LOG OUT</a>
+          </li>
+          <li>
+            <img src={jrcLogo} alt="JrC logo" className="img-responsive" />
+          </li>
+          <li className="right">
+            <Link to={`/profile/${this.props.authId}`}>PROFILE</Link>
+          </li>
+        </ul>
+      </nav>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  token: state.auth.token
+  token: state.auth.token,
+  authId: state.auth.userid
 });
 
 const mapDispatchToProps = dispatch => ({
