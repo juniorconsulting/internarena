@@ -13,7 +13,7 @@ body {
     height: 5vh;
     display: block;
     background: #445663;
-    font-family: 'Montserrat', open-sans;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 200;
 
     a {
@@ -29,7 +29,6 @@ body {
     }
 
     ul {
-        justify-content: center;
         list-style-type: none;
         height: 100%;
         text-align: center;
@@ -46,10 +45,6 @@ body {
 
         .right {
             float: right;
-        }
-
-        .center {
-            float: center;
         }
     }
 

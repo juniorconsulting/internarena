@@ -14,19 +14,21 @@ class Home extends Component {
 
   render() {
     return (
-      <nav id="navbar">
-        <ul>
-          <li className="left">
-            <a href="#" onClick={this.logout.bind(this)}>LOG OUT</a>
-          </li>
-          <li>
-            <img src={jrcLogo} alt="JrC logo" className="img-responsive" />
-          </li>
-          <li className="right">
-            <Link to={`/profile/${this.props.authId}`}>PROFILE</Link>
-          </li>
-        </ul>
-      </nav>
+      <div>
+        <nav id="navbar">
+          <ul>
+            <li className="left">
+              <a href="#" onClick={this.logout.bind(this)}>LOG OUT</a>
+            </li>
+            <li>
+              <img src={jrcLogo} alt="JrC logo" className="img-responsive" />
+            </li>
+            <li className="right">
+              <Link to={`/profile/${this.props.authId}`}>PROFILE</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     );
   }
 }
