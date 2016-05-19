@@ -30,7 +30,7 @@ export function getProfileDataFailure(error) {
 export function getProfile(userid, token) {
   return dispatch => {
     dispatch(getProfileDataRequest());
-    return fetch(PROFILE_API + '/profiles/' + userid, {
+    return fetch(PROFILE_API + '/profiles/' + userid + '/', {
       method: 'get',
       headers: {
         'Accept': 'application/json',
@@ -41,7 +41,6 @@ export function getProfile(userid, token) {
       .then(parseJSON)
       .then(camelizeProps)
       .then(json => {
-        json = json.data;
         if (json.url) {
           dispatch(getProfileDataSuccess(json));
         } else {

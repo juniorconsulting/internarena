@@ -52,4 +52,29 @@ describe('camelizeProps', () => {
     };
     expect(camelizeProps(orig)).toEqual(camelized);
   });
+
+  it('should work for real-world example', () => {
+    const orig = {
+      'url': "http://profile.jrc.no/profiles/1/",
+      'auth_id': 1,
+      'first_name': "Øyvind",
+      'last_name': "Robertsen",
+      'phone_nr': "97099592",
+      'bio_text': "This is a bio text.",
+      'fun_fact': "This is a fun fact.",
+      'active': true
+    }
+    const camelized = {
+      url: "http://profile.jrc.no/profiles/1/",
+      authId: 1,
+      firstName: "Øyvind",
+      lastName: "Robertsen",
+      phoneNr: "97099592",
+      bioText: "This is a bio text.",
+      funFact: "This is a fun fact.",
+      active: true
+    }
+
+    expect(camelizeProps(orig)).toEqual(camelized);
+  })
 });

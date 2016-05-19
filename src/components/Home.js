@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Grid, Col, Row} from 'react-bootstrap';
+import {Grid, Col, Row, Image} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actionCreators from '../actions/auth';
 import Profile from './profile/Profile';
 
 let jrcLogo = require('../images/jr_white.svg');
+let userImage = require('../images/user_placeholder.png');
 
 class Home extends Component {
 
@@ -15,11 +16,6 @@ class Home extends Component {
       showProfile: false
     };
   }
-
-  logout() {
-    this.props.actions.logoutUser(this.props.token);
-  }
-
   toggleProfile() {
     this.setState({showProfile: !this.state.showProfile});
   }
@@ -29,14 +25,13 @@ class Home extends Component {
       <div>
         <nav id="navbar">
           <ul>
-            <li className="left">
-              <a onClick={this.logout.bind(this)}>LOG OUT</a>
-            </li>
             <li>
-              <img src={jrcLogo} alt="JrC logo" className="img-responsive" />
+              <Image src={jrcLogo} alt="JrC logo" responsive />
             </li>
             <li className="right">
-              <a onClick={this.toggleProfile.bind(this)}>PROFILE</a>
+              <a onClick={this.toggleProfile.bind(this)}>
+                <Image src={userImage} alt="Profile Picture" responsive circle />
+              </a>
             </li>
           </ul>
         </nav>

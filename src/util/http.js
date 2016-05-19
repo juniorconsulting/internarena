@@ -21,7 +21,7 @@ export function camelizeProps(json, delimiter = "_") {
     let newKey = split[0];
     if (split.length > 1) {
       for (var word of split.slice(1, split.length + 1)) {
-        newKey += word.charAt(0).toUpperCase();
+        newKey += word.charAt(0).toUpperCase() + word.slice(1);
       }
     }
     let value = json[key];
