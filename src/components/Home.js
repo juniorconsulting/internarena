@@ -1,16 +1,27 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router';
 import {Grid, Col, Row} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actionCreators from '../actions/auth';
+import Profile from './profile/Profile';
 
 let jrcLogo = require('../images/jr_white.svg');
 
 class Home extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      showProfile: false
+    };
+  }
+
   logout() {
     this.props.actions.logoutUser(this.props.token);
+  }
+
+  toggleProfile() {
+    this.setState({showProfile: !this.state.showProfile});
   }
 
   render() {
@@ -19,13 +30,13 @@ class Home extends Component {
         <nav id="navbar">
           <ul>
             <li className="left">
-              <a href="#" onClick={this.logout.bind(this)}>LOG OUT</a>
+              <a onClick={this.logout.bind(this)}>LOG OUT</a>
             </li>
             <li>
               <img src={jrcLogo} alt="JrC logo" className="img-responsive" />
             </li>
             <li className="right">
-              <Link to={`/profile/${this.props.authId}`}>PROFILE</Link>
+              <a onClick={this.toggleProfile.bind(this)}>PROFILE</a>
             </li>
           </ul>
         </nav>
@@ -35,6 +46,7 @@ class Home extends Component {
             <Col xs={6} md={4}><code>&lt;{'Col xs={6} md={4}'} /&gt;</code></Col>
           </Row>
         </Grid>
+        <Profile hidden={!this.state.showProfile}/>
       </div>
     );
   }
