@@ -29,8 +29,8 @@ describe('getProfile', () => {
       active: true
     };
     nock(PROFILE_API)
-      .get('/profiles/1') // jrc-auth userid
-      .reply(200, {data: sampleData});
+      .get('/profiles/1/') // jrc-auth userid
+      .reply(200, sampleData);
 
     const expectedActions = [
       {type: types.PROFILE_DATA_REQUEST},
