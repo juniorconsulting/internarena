@@ -6,7 +6,7 @@ import * as actionCreators from '../actions/auth';
 import Profile from './profile/Profile';
 
 let jrcLogo = require('../images/jr_white.svg');
-let userImage = require('../images/user_placeholder.png');
+let placeholderImage = require('../images/user_placeholder.png');
 
 class Home extends Component {
 
@@ -30,7 +30,11 @@ class Home extends Component {
             </li>
             <li className="right">
               <a onClick={this.toggleProfile.bind(this)}>
-                <Image src={userImage} alt="Profile Picture" responsive circle />
+                <Image src={
+                         this.props.profile.image ?
+                         this.props.profile.image :
+                         placeholderImage
+                       } alt="Profile Picture" responsive circle />
               </a>
             </li>
           </ul>
@@ -49,7 +53,8 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   token: state.auth.token,
-  authId: state.auth.userid
+  authId: state.auth.userid,
+  profile: state.profile
 });
 
 const mapDispatchToProps = dispatch => ({

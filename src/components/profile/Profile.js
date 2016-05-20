@@ -7,17 +7,17 @@ import * as actionCreators from '../../actions';
 import {bindActionCreators} from 'redux';
 
 require('../../styles/profile/style.scss');
-let userImage = require('../../images/user_placeholder.png');
+let placeholderImage = require('../../images/user_placeholder.png');
 
 class Profile extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.props.actions.getProfile(this.props.authId, this.props.token);
-  }
-
   logout() {
     this.props.actions.logoutUser(this.props.token);
+  }
+
+  componentWillMount() {
+    if (this.props.profile.firstName === null) {
+      this.props.actions.getProfile(this.props.authId, this.props.token);
+    }
   }
 
   render() {
@@ -26,10 +26,14 @@ class Profile extends React.Component {
     }
     return (
       <div id="profile-container">
-        <Image src={userImage} alt="Profile Picture" responsive circle />
+        <Image src={
+                 this.props.profile.image ?
+                 this.props.profile.image :
+                 placeholderImage
+               } alt="Profile Picture" responsive circle />
         <p className="firstName">{this.props.profile.firstName}</p>
         <p className="lastName">{this.props.profile.lastName}</p>
-        <p className="title">KONSULENT</p>
+        <p className="title">{this.props.profile.active ? this.props.profile.title : 'Alumni'}</p>
         <Grid>
           <Row>
             <Col md={6}>

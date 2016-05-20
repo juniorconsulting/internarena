@@ -24,6 +24,8 @@ describe('Profile reducer', () => {
       bioText: null,
       funFact: null,
       active: null,
+      title: null,
+      image: null,
       loading: false
     };
 
@@ -38,6 +40,8 @@ describe('Profile reducer', () => {
       bioText: null,
       funFact: null,
       active: null,
+      title: null,
+      image: null,
       loading: true
     };
 
@@ -52,6 +56,8 @@ describe('Profile reducer', () => {
       bioText: null,
       funFact: null,
       active: null,
+      title: null,
+      image: null,
       loading: true
     };
     const expectedState = {
@@ -61,6 +67,8 @@ describe('Profile reducer', () => {
       bioText: 'Bio',
       funFact: 'Fun fact',
       active: true,
+      title: 'Consultant',
+      image: 'http://example.com/image.png',
       loading: false
     };
     const payload = {
@@ -69,7 +77,9 @@ describe('Profile reducer', () => {
       phoneNr: '12345678',
       bioText: 'Bio',
       funFact: 'Fun fact',
-      active: true
+      active: true,
+      title: 'Consultant',
+      image: 'http://example.com/image.png'
     };
 
     expect(profile(originalState, {type: types.PROFILE_DATA_SUCCESS, payload: payload})).toEqual(expectedState);
@@ -83,6 +93,8 @@ describe('Profile reducer', () => {
       bioText: 'Bio',
       funFact: 'Fun fact',
       active: true,
+      title: 'Consultant',
+      image: 'http://example.com/image.png',
       loading: false
     };
     const expectedState = {
@@ -92,6 +104,8 @@ describe('Profile reducer', () => {
       bioText: null,
       funFact: null,
       active: null,
+      title: null,
+      image: null,
       loading: false
     };
 

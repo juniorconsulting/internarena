@@ -41,7 +41,7 @@ export function getProfile(userid, token) {
       .then(parseJSON)
       .then(camelizeProps)
       .then(json => {
-        if (json.url) {
+        if (json.firstName) {
           dispatch(getProfileDataSuccess(json));
         } else {
           dispatch(getProfileDataFailure(new Error('Something went wrong.')));

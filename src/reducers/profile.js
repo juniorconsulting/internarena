@@ -8,6 +8,8 @@ export const initialState = {
   bioText: null,
   funFact: null,
   active: null,
+  title: null,
+  image: null,
   loading: false
 };
 
@@ -25,6 +27,8 @@ export default createReducer(initialState, {
       bioText: payload.bioText,
       funFact: payload.funFact,
       active: payload.active,
+      title: payload.title,
+      image: payload.image,
       loading: false
     });
   },
