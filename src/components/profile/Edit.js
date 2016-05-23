@@ -4,7 +4,7 @@ import * as actionCreators from '../../actions';
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {FormControl} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 class Edit extends React.Component {
   logout() {
@@ -13,12 +13,20 @@ class Edit extends React.Component {
 
   render() {
     return (
-      <div id="profile-container">
-        <h1>Info</h1>
+      <div className="profile-container" id="edit-profile-form">
+        <h2 className="heading">MY PROJECTS</h2>
+        <h2 className="heading">INFO</h2>
         <form>
-          <FormControl>
-          </FormControl>
+          <div className="toggle-container">
+            <p>Active</p>
+            <div className="switch">
+              <input id="active-toggle" className="toggle" type="checkbox" />
+              <label htmlFor="active-toggle"></label>
+            </div>
+            <p>Alumni</p>
+          </div>
         </form>
+        <Button bsStyle="primary" bsSize="large" onClick={this.props.hideForm}>SAVE</Button>
       </div>
     );
   }

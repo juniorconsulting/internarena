@@ -15,7 +15,7 @@ class Edit extends React.Component {
 
   render() {
     return (
-      <div id="profile-container">
+      <div className="profile-container">
         <Image src={
                  this.props.profile.image ?
                  this.props.profile.image :
@@ -23,7 +23,7 @@ class Edit extends React.Component {
                } alt="Profile Picture" responsive circle />
         <p className="firstName">{this.props.profile.firstName}</p>
         <p className="lastName">{this.props.profile.lastName}</p>
-        <p className="title">{this.props.profile.active ? this.props.profile.title : 'Alumni'}</p>
+        <p className="heading title">{this.props.profile.active ? this.props.profile.title : 'Alumni'}</p>
         <Grid>
           <Row>
             <Col md={6}>

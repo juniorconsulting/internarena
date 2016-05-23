@@ -22,6 +22,10 @@ class Profile extends React.Component {
     this.setState({showForm: true});
   }
 
+  hideForm() {
+    this.setState({showForm: false});
+  }
+
   componentWillMount() {
     if (this.props.profile.firstName === null) {
       this.props.actions.getProfile(this.props.authId, this.props.token);
@@ -33,7 +37,7 @@ class Profile extends React.Component {
       return null;
     }
     let component = this.state.showForm ?
-          <Edit /> :
+          <Edit hideForm={this.hideForm.bind(this)} /> :
           <View showForm={this.showForm.bind(this)} />;
     return (
       <div>
