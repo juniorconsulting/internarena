@@ -2,16 +2,24 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {Image, Grid, Row, Col, Button, Glyphicon} from 'react-bootstrap';
 import * as actionCreators from '../../actions';
 import {bindActionCreators} from 'redux';
+import View from './View';
+import Edit from './Edit';
 
 require('../../styles/profile/style.scss');
-let placeholderImage = require('../../images/user_placeholder.png');
 
 class Profile extends React.Component {
-  logout() {
-    this.props.actions.logoutUser(this.props.token);
+
+  constructor() {
+    super();
+    this.state = {
+      showForm: false
+    };
+  }
+
+  showForm() {
+    this.setState({showForm: true});
   }
 
   componentWillMount() {
@@ -24,26 +32,12 @@ class Profile extends React.Component {
     if (this.props.hidden) {
       return null;
     }
+    let component = this.state.showForm ?
+          <Edit /> :
+          <View showForm={this.showForm.bind(this)} />;
     return (
-      <div id="profile-container">
-        <Image src={
-                 this.props.profile.image ?
-                 this.props.profile.image :
-                 placeholderImage
-               } alt="Profile Picture" responsive circle />
-        <p className="firstName">{this.props.profile.firstName}</p>
-        <p className="lastName">{this.props.profile.lastName}</p>
-        <p className="title">{this.props.profile.active ? this.props.profile.title : 'Alumni'}</p>
-        <Grid>
-          <Row>
-            <Col md={6}>
-              <Button bsStyle="primary" bsSize="large" block>Rediger Profil</Button>
-            </Col>
-            <Col md={6}>
-              <a onClick={this.logout.bind(this)}><Glyphicon glyph="off" /></a>
-            </Col>
-          </Row>
-        </Grid>
+      <div>
+        {component}
       </div>
     );
   }
