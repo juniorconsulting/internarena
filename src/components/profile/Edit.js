@@ -14,7 +14,6 @@ class Edit extends React.Component {
   render() {
     return (
       <div className="profile-container" id="edit-profile-form">
-        <h2 className="heading">MY PROJECTS</h2>
         <h2 className="heading">INFO</h2>
         <form>
           <div className="toggle-container">

@@ -10,11 +10,34 @@
     width: 40vw;
     top: 6vh;
     padding: 5vh 2.5vw 0 2.5vw;
-    text-align: center;
+
+    #profile-card {
+        margin-bottom: 2vh;
+    }
+
+    #projects-row {
+        tbody tr td {
+            font-size: 28px;
+            font-weight: 100;
+            border-bottom: 1px solid #ddd;
+            border-top: none;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+    }
+
+    #bottom-row {
+        // Ugly hack
+        position: absolute;
+        bottom: 4vh;
+        width: 35vw;
+    }
 
     img {
-        margin: 0 auto 5vh auto;
-        max-width: 30%;
+        margin: 0 auto;
+        max-width: 100%;
     }
 
     .firstName, .lastName {
@@ -24,7 +47,6 @@
 
     .title {
         margin-top: 3vh;
-        margin-bottom: 25vh;
         font-size: 30px;
     }
 
@@ -40,6 +62,10 @@
         background: none;
         border-color: #7B858E;
         font-weight: 100;
+    }
+
+    #logout-button {
+        text-align: center
     }
 
     a {
