@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Col, Row, Image} from 'react-bootstrap';
+import {Glyphicon, Grid, Col, Row, Image} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actionCreators from '../actions/auth';
@@ -25,6 +25,9 @@ class Home extends Component {
       <div>
         <nav id="navbar">
           <ul>
+            <li className="left">
+              <a><Glyphicon glyph="menu-hamburger" /></a>
+            </li>
             <li>
               <Image src={jrcLogo} alt="JrC logo" responsive />
             </li>

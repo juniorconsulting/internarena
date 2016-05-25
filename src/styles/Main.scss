@@ -51,6 +51,10 @@ body {
         li {
             display: inline-block;
             height: 100%;
+
+            a span {
+                font-size: 40px;
+            }
         }
 
         .left {

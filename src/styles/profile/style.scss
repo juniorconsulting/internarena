@@ -9,10 +9,14 @@
     right: 0;
     width: 40vw;
     top: 6vh;
-    padding: 5vh 2.5vw 0 2.5vw;
+    padding: 4vh 2.5vw 0 2.5vw;
 
     #profile-card {
-        margin-bottom: 2vh;
+        margin-bottom: 3vh;
+
+        img {
+            max-height: 15vh;
+        }
     }
 
     #projects-row {
@@ -41,7 +45,7 @@
     }
 
     .firstName, .lastName {
-        font-size: 70px;
+        font-size: 50px;
         line-height: 80%;
     }
 
