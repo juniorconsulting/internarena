@@ -21,7 +21,7 @@
 
     #projects-row {
         tbody tr td {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 100;
             border-bottom: 1px solid #ddd;
             border-top: none;
@@ -86,6 +86,10 @@
 #edit-profile-form {
     h1, h2, h3, h4, h5, h6 {
         text-align: left;
+    }
+
+    h2:first-child {
+        margin-top: 0;
     }
 
     .toggle-container {
