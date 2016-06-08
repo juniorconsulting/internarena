@@ -16,6 +16,18 @@ class Edit extends React.Component {
     console.log(e.target.value);
   }
 
+  toggleActive() {
+    if($('#activeToggle').is(':checked')) {
+      $('.active').addClass('hidden');
+      $('.alumni').removeClass('hidden');
+    } else {
+      $('.active').removeClass('hidden');
+      $('.alumni').addClass('hidden');
+    }
+  }
+
+
+
   render() {
     //    var titleComponent =
     //          (
@@ -32,24 +44,22 @@ class Edit extends React.Component {
         <h2 className="heading">INFO</h2>
         <form>
           <Input
-             type="text"
-             onChange={this.handleChange}
-             value={this.props.profile.firstName} />
+            type="text"
+            onChange={this.handleChange}
+            value={this.props.profile.firstName} />
           <Input
-             type="text"
-             onChange={this.handleChange}
-             value={this.props.profile.lastName} />
+            type="text"
+            onChange={this.handleChange}
+            value={this.props.profile.lastName} />
           <select value={this.props.profile.title} onChange={this.handleChange}>
             <option value="CONSULTANT">Consultant</option>
             <option value="PARTNER">Partner</option>
           </select>
-          <div className="toggle-container">
-            <p>Active</p>
-            <div className="switch">
-              <input id="active-toggle" className="toggle" type="checkbox" />
-              <label htmlFor="active-toggle"></label>
-            </div>
-            <p>Alumni</p>
+
+          <div className="jrc-toggle text-center">
+            <span>Aktiv </span>
+            <input type="checkbox" id="activeToggle" onChange={this.toggleActive} />
+            <span> Alumni</span>
           </div>
         </form>
         <Button bsStyle="primary" bsSize="large" onClick={this.props.hideForm}>SAVE</Button>
