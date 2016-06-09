@@ -64,7 +64,7 @@ var Activity = React.createClass({
       isChecked: !this.state.isChecked
     }, function() {
       console.log(this.state);
-    }).bind(this);
+    });
   },
 
   render: function() {
@@ -74,7 +74,6 @@ var Activity = React.createClass({
              onChange={this.toggleChange}/>
     );
   }
-
 });
 
 const mapStateToProps = state => ({
