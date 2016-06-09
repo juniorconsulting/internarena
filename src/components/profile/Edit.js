@@ -16,18 +16,6 @@ class Edit extends React.Component {
     console.log(e.target.value);
   }
 
-  toggleActive() {
-    if($('#activeToggle').is(':checked')) {
-      $('.active').addClass('hidden');
-      $('.alumni').removeClass('hidden');
-    } else {
-      $('.active').removeClass('hidden');
-      $('.alumni').addClass('hidden');
-    }
-  }
-
-
-
   render() {
     //    var titleComponent =
     //          (
@@ -58,7 +46,7 @@ class Edit extends React.Component {
 
           <div className="jrc-toggle text-center">
             <span>Aktiv </span>
-            <input type="checkbox" id="activeToggle" onChange={this.toggleActive} />
+            <Activity />
             <span> Alumni</span>
           </div>
         </form>
@@ -67,6 +55,31 @@ class Edit extends React.Component {
     );
   }
 }
+
+var Activity = React.createClass({
+  getInitialState: function() {
+    return {
+      isChecked: true
+    };
+  },
+
+  toggleChange: function() {
+    this.setState({
+      isChecked: !this.state.isChecked
+    }, function() {
+      console.log(this.state);
+    }).bind(this);
+  },
+
+  render: function() {
+    return (
+      <input type="checkbox" id="activeToggle"
+             checked={this.state.isChecked}
+             onChange={this.toggleChange}/>
+    );
+  }
+
+});
 
 const mapStateToProps = state => ({
   token: state.auth.token,

@@ -58,7 +58,7 @@
     "build": "NODE_ENV=production node_modules/.bin/webpack -p",
     "test": "node_modules/.bin/mocha --compilers js:babel-register --recursive",
     "test:watch": "npm run test -- --watch",
-    "dev": "node_modules/.bin/webpack-dev-server --hot --progress --host 0.0.0.0 --content-base dist",
+    "dev": "node_modules/.bin/webpack-dev-server --inline --hot --progress --host 0.0.0.0 --content-base dist",
     "lint": "node_modules/.bin/eslint src/",
     "coverage": "node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha -- --recursive --compilers js:babel-register --colors --reporter dot test/"
   },
