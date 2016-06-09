@@ -8,10 +8,6 @@ import {Button, Input} from 'react-bootstrap';
 
 class Edit extends React.Component {
 
-  logout() {
-    this.props.actions.logoutUser(this.props.token);
-  }
-
   handleChange(e) {
     console.log(e.target.value);
   }
@@ -32,13 +28,13 @@ class Edit extends React.Component {
         <h2 className="heading">INFO</h2>
         <form>
           <Input
-            type="text"
-            onChange={this.handleChange}
-            value={this.props.profile.firstName} />
+             type="text"
+             onChange={this.handleChange}
+             value={this.props.profile.firstName} />
           <Input
-            type="text"
-            onChange={this.handleChange}
-            value={this.props.profile.lastName} />
+             type="text"
+             onChange={this.handleChange}
+             value={this.props.profile.lastName} />
           <select value={this.props.profile.title} onChange={this.handleChange}>
             <option value="CONSULTANT">Consultant</option>
             <option value="PARTNER">Partner</option>
