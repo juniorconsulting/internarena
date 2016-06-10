@@ -25,7 +25,7 @@ describe('loginUser', () => {
     const expectedActions = [
       {type: types.LOGIN_USER_REQUEST},
       {type: types.LOGIN_USER_SUCCESS, payload: {token: 'token', userid: 1}},
-      {type: "@@reduxReactRouter/historyAPI", payload: {args: ["/next"], method: "push"}}
+      {type: "@@router/CALL_HISTORY_METHOD", payload: {args: ["/next"], method: "push"}}
     ];
 
     const store = mockStore({});
@@ -50,7 +50,7 @@ describe('logoutUser', () => {
     const expectedActions = [
       {type: types.LOGOUT_USER_REQUEST},
       {type: types.LOGOUT_USER_SUCCESS},
-      {type: "@@reduxReactRouter/historyAPI", payload: {args: ["/"], method: "push"}}
+      {type: "@@router/CALL_HISTORY_METHOD", payload: {args: ["/"], method: "push"}}
     ];
 
     const store = mockStore({});
@@ -75,7 +75,7 @@ describe('checkToken', () => {
     const expectedActions = [
       {type: types.LOGIN_USER_REQUEST},
       {type: types.LOGIN_USER_SUCCESS, payload: {token: 'token', userid: 1}},
-      {type: "@@reduxReactRouter/historyAPI", payload: {args: ["/next"], method: "push"}}
+      {type: "@@router/CALL_HISTORY_METHOD", payload: {args: ["/next"], method: "push"}}
     ];
 
     const store = mockStore({});

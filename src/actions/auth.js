@@ -1,5 +1,5 @@
 import * as types from '../constants';
-import {push} from 'redux-router';
+import {push} from 'react-router-redux';
 import {checkStatus, parseJSON} from '../util/http';
 import {AUTH_API} from '../config';
 
@@ -76,7 +76,7 @@ export function checkToken(token, redirect = "/") {
           dispatch(loginUserSuccess(token, json.userid));
           dispatch(push(redirect));
         } else {
-          dispatch(loginUserFailure);
+          dispatch(loginUserFailure());
           dispatch(push('/login'));
         }
       })

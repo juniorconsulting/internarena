@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router';
+import {Route, IndexRoute} from 'react-router';
 
 // Components
 import App from './components/App';
@@ -11,9 +11,9 @@ require('./styles/Main.scss');
 
 export default (
   <div>
-    <Route component={App}>
-      <Route component={requireAuthentication(Home)} path="/" />
-      <Route component={LoginPage} path="/login" />
+    <Route component={App} path="/">
+      <IndexRoute component={requireAuthentication(Home)}/>
     </Route>
+    <Route component={LoginPage} path="/login" />
   </div>
 );
