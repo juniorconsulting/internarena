@@ -1,0 +1,162 @@
+.profile-container {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    display: block;
+    background-color: #445663;
+    color: white;
+    height: 94vh;
+    position: absolute;
+    right: 0;
+    width: 40vw;
+    top: 6vh;
+    padding: 4vh 2.5vw 0 2.5vw;
+
+    #profile-card {
+        margin-bottom: 3vh;
+
+        img {
+            max-height: 15vh;
+        }
+    }
+
+    #projects-row {
+        tbody tr td {
+            font-size: 24px;
+            font-weight: 100;
+            border-bottom: 1px solid #ddd;
+            border-top: none;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+    }
+
+    #bottom-row {
+        // Ugly hack
+        position: absolute;
+        bottom: 4vh;
+        width: 35vw;
+    }
+
+    img {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .firstName, .lastName {
+        font-size: 50px;
+        line-height: 80%;
+    }
+
+    .title {
+        margin-top: 3vh;
+        font-size: 30px;
+    }
+
+    .heading {
+        color: #9EA7AD;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    button {
+        background: none;
+        border-color: #7B858E;
+        font-weight: 100;
+    }
+
+    #logout-button {
+        text-align: center
+    }
+
+    a {
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+
+        span {
+            margin: 10px;
+        }
+    }
+}
+
+#edit-profile-form {
+    h1, h2, h3, h4, h5, h6 {
+        text-align: left;
+    }
+
+    h2:first-child {
+        margin-top: 0;
+    }
+
+    .jrc-toggle {
+
+        margin-bottom: 10px;
+        font-weight: normal;
+        $white: #fff;
+        $green: #53d76a;
+        $grey: #d3d3d3;
+
+        span {
+            color: $white;
+            font-size: 12px;
+        }
+
+        input[type="checkbox"] {
+            appearance: none;
+            background-color: darken($white, 2%);
+            border: 1px solid $grey;
+            border-radius: 26px;
+            box-shadow: inset 0 0 0 1px $grey;
+            cursor: pointer;
+            height: 24px;
+            position: relative;
+            transition: border .15s .05s,
+            box-shadow .15s .2s,
+            padding .15s;
+            width: 44px;
+            top: 5px;
+            margin-left: 5px;
+            margin-right: 5px;
+
+            &:after {
+                background-color: $white;
+                border: 1px solid $grey;
+                border-radius: 24px;
+                box-shadow: inset 0 -3px 3px hsla(0,0%,0%,.025),
+                0 1px 4px hsla(0,0%,0%,.15),
+                0 4px 4px hsla(0,0%,0%,.1);
+                content: '';
+                display: block;
+                height: 24px;
+                left: 0;
+                position: absolute;
+                right: 16px;
+                top: 0;
+                transition: border .15s .05s,
+                left .15s .05s,
+                right .05s .075s;
+            }
+            &:checked {
+                border-color: $green;
+                box-shadow: inset 0 0 0 13px $green;
+                padding-left: 18px;
+                transition: border .15s,
+                box-shadow .15s,
+                padding .15s .05s;
+
+                &:after {
+                    border-color: $green;
+                    left: 16px;
+                    right: 0;
+                    transition: border .15s,
+                    left .05s .15s,
+                    right .15s .075s;
+                }
+            }
+        }
+    }
+}
