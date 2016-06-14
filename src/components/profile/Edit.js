@@ -41,9 +41,7 @@ class Edit extends React.Component {
           </select>
 
           <div className="jrc-toggle text-center">
-            <span>Aktiv </span>
             <Activity />
-            <span> Alumni</span>
           </div>
         </form>
         <Button bsStyle="primary" bsSize="large" onClick={this.props.hideForm}>SAVE</Button>
@@ -69,9 +67,15 @@ var Activity = React.createClass({
 
   render: function() {
     return (
-      <input type="checkbox" id="activeToggle"
-             checked={this.state.isChecked}
-             onChange={this.toggleChange}/>
+      <div>
+        <span>Aktiv </span>
+        <input id="checkbox-active" name="active" className="cmn-toggle cmn-toggle-round"
+               type="checkbox"
+               checked={this.state.isChecked}
+               onChange={this.toggleChange} />
+        <label htmlFor="checkbox-active">s</label>
+        <span> Alumni</span>
+      </div>
     );
   }
 });
