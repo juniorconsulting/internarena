@@ -7,18 +7,26 @@
 * `npm install`
 * `npm run dev`
 
+The project should now be accessible from
+[`localhost:8080`](localhost:8080). As you make changes to the code,
+`npm run dev` will automatically rebuild and push the changes to the
+browser. No need to reload the page.
+
 ## Architecture
 
 Uses React, Redux and `react-router`.
 
 ## Development
 
-Linting, `npm run lint`, should report no errors or warnings before merging changes.
-Also, to make it easier to enforce codestyle, install an [Editorconfig](http://editorconfig.org/)-plugin for your editor.
+Linting, `npm run lint`, should report no errors or warnings before
+merging changes.  Also, to make it easier to enforce codestyle,
+install an [Editorconfig](http://editorconfig.org/)-plugin for your
+editor.
 
 `npm test` or `npm run test:watch` to run tests.
 
 ## Deployment / CI
 
-Jenkins automatically tests all pull requests.
-Commits to `master` are automatically built and deployed to [intern.jrc.no](http://intern.jrc.no).
+Jenkins automatically tests all pull requests.  Commits to `master`
+are automatically built and deployed to
+[intern.jrc.no](http://intern.jrc.no).
