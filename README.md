@@ -1,5 +1,7 @@
 # Internarena
 [![Build Status](http://ci.jrc.no/buildStatus/icon?job=internarena-autobuild)](http://ci.jrc.no/job/internarena-autobuild/)
+[![Stories in Ready](https://badge.waffle.io/juniorconsulting/internarena.svg?label=ready&title=Ready)](http://waffle.io/juniorconsulting/internarena)
+
 
 ## Setup
 
