@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/juniorconsulting/internarena.png?label=ready&title=Ready)](https://waffle.io/juniorconsulting/internarena)
 # Internarena
 [![Build Status](http://ci.jrc.no/buildStatus/icon?job=internarena-autobuild)](http://ci.jrc.no/job/internarena-autobuild/)
 
