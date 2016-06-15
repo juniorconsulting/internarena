@@ -23,13 +23,8 @@
         padding-left: 25px;
     }
 
-    input:not([type="submit"]) {
+    input:not([type="submit"]):not([type="button"]) {
         background-color: rgba(0, 0, 0, 0.2);
-    }
-
-    #register-button {
-        height: 55px;
-        padding-top: 18px;
     }
 
     input {

@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {ButtonInput, Button, Input, Alert, Glyphicon} from 'react-bootstrap';
+import {ButtonInput, Input, Alert, Glyphicon} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as authActionCreators from '../../actions/auth';
@@ -61,14 +61,12 @@ class LoginFormComponent extends React.Component {
              bsStyle="danger"
              disabled={this.props.isAuthenticating}
              value="Logg inn" block/>
-          <div className="form-group">
-            <Button
-               href="/register"
-               className="form-control"
-               id="register-button"
-               bsStyle="success"
-               block>Register</Button>
-          </div>
+          <ButtonInput
+             onClick={this.props.actions.gotoRegisterPage}
+             className="form-control"
+             bsStyle="success"
+             value="Register"
+             block />
       </form>
     );
   }

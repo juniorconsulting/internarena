@@ -59,6 +59,12 @@ export function logoutUserFailure(error) {
   };
 }
 
+export function gotoRegisterPage() {
+  return function(dispatch) {
+    dispatch(push('/register'));
+  };
+}
+
 export function checkToken(token, redirect = "/") {
   return function(dispatch) {
     dispatch(loginUserRequest());
