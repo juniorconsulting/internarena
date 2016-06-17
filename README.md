@@ -25,7 +25,17 @@ merging changes.  Also, to make it easier to enforce codestyle,
 install an [Editorconfig](http://editorconfig.org/)-plugin for your
 editor.
 
-`npm test` or `npm run test:watch` to run tests.
+### High CPU usage
+
+
+If `npm run dev` is using a lot of resources, run `npm install
+fsevents`.  This allows `webpack-dev-server` to be notified of changes
+to files, as opposed to polling.
+
+### Tests
+
+`npm test` or `npm run test:watch` to run tests.  All action creators
+and reducers should be tested.
 
 ## Deployment / CI
 
