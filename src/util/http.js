@@ -32,3 +32,7 @@ export function camelizeProps(json, delimiter = "_") {
   }
   return newObj;
 }
+
+export function isHTTPError(error) {
+  return 'response' in error;
+}
