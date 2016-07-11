@@ -2,6 +2,7 @@ import * as types from '../constants';
 import {push} from 'react-router-redux';
 import {checkStatus, parseJSON, isHTTPError} from '../util/http';
 import {AUTH_API} from '../config';
+import {createProfile} from './profile';
 
 require('isomorphic-fetch');
 
@@ -159,7 +160,7 @@ export function logoutUser(token) {
     }).then(checkStatus)
       .then(parseJSON)
       .then(json => {
-        if (json.body !== 'User logged out') {
+        if (json.message !== 'User logged out.') {
           dispatch(logoutUserFailure({response: {status: 403, statusText: json.body}}));
           return;
         }
@@ -172,7 +173,7 @@ export function logoutUser(token) {
   };
 }
 
-export function registerUser(username, email, password1, password2) {
+export function registerUser(username, email, password1, password2, firstName, lastName) {
   return dispatch => {
     dispatch(registerUserRequest());
     return fetch(AUTH_API + '/register/', {
@@ -185,12 +186,13 @@ export function registerUser(username, email, password1, password2) {
     }).then(checkStatus)
       .then(parseJSON)
       .then(json => {
-        if (json.body !== username) {
+        if (json.username !== username) {
           dispatch(registerUserFailure(json));
           return;
         }
         dispatch(registerUserSuccess());
-        dispatch(push('/confirm-email'));
+        let userId = json.userid;
+        dispatch(createProfile(userId, firstName, lastName));
       })
       .catch(ex => {
         dispatch(registerUserFailure(ex));

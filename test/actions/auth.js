@@ -4,7 +4,7 @@ import nock from 'nock';
 import expect from 'expect';
 
 import {logoutUser, loginUser, checkToken, registerUser} from '../../src/actions/index';
-import {AUTH_API} from '../../src/config';
+import {AUTH_API, PROFILE_API} from '../../src/config';
 import * as types from '../../src/constants/index';
 
 require('../helper');
@@ -45,7 +45,7 @@ describe('logoutUser', () => {
   it('creates LOGOUT_USER_SUCCESS when successfully logged out', () => {
     nock(AUTH_API)
       .post('/logout/')
-      .reply(200, {body: "User logged out"});
+      .reply(200, {message: "User logged out."});
 
     const expectedActions = [
       {type: types.LOGOUT_USER_REQUEST},
@@ -95,12 +95,18 @@ describe('registerUser', () => {
   it('creates REQUEST, SUCCESS, and redirects to /confirm-email', () => {
     nock(AUTH_API)
       .post('/register/')
-      .reply(200, {body: "testname"});
+      .reply(200, {username: "testname"});
+
+    nock(PROFILE_API)
+      .post('/profiles/')
+      .reply(200, {profileId: 1});
 
     const expectedActions = [
       {type: types.REGISTER_USER_REQUEST},
       {type: types.REGISTER_USER_SUCCESS},
-      {type: "@@router/CALL_HISTORY_METHOD", payload: {args: ["/confirm-email"], method: "push"}}
+      {type: types.CREATE_PROFILE_REQUEST}
+      // {type: types.CREATE_PROFILE_SUCCESS},
+      // {type: "@@router/CALL_HISTORY_METHOD", payload: {args: ["/confirm-email"], method: "push"}}
     ];
 
     const store = mockStore({});
