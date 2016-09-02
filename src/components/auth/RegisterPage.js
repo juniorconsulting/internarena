@@ -2,7 +2,7 @@ import React from 'react';
 import AuthPage from './AuthPage';
 import RegisterFormComponent from './RegisterFormComponent';
 
-require('../../styles/login/LoginPage.scss');
+require('../../styles/login/AuthPage.scss');
 
 class RegisterPage extends React.Component {
 

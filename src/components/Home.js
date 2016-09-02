@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Glyphicon, Grid, Col, Row, Image} from 'react-bootstrap';
+import {Glyphicon, Grid, Col, Image} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actionCreators from '../actions/auth';
 import Profile from './profile/Profile';
+import TimeLineComponent from './home/TimeLineComponent';
 
 let jrcLogo = require('../images/jr_white.svg');
 let placeholderImage = require('../images/user_placeholder.png');
@@ -43,10 +44,9 @@ class Home extends Component {
           </ul>
         </nav>
         <Grid id="main-content">
-          <Row className="show-grid">
-            <Col xs={12} md={8}><code>&lt;{'Col xs={12} md={8}'} /&gt;</code></Col>
-            <Col xs={6} md={4}><code>&lt;{'Col xs={6} md={4}'} /&gt;</code></Col>
-          </Row>
+            <Col xs={12} md={12}>
+              <TimeLineComponent> </TimeLineComponent>
+            </Col>
         </Grid>
         <Profile hidden={!this.state.showProfile}/>
       </div>
