@@ -47,19 +47,21 @@ class LoginFormComponent extends React.Component {
              className="username"
              value={this.state.username}
              onChange={this.handleUsernameChange}
-             addonBefore={innerUserIcon} />
+             addonBefore={innerUserIcon}
+             required />
           <Input
              type="password"
              placeholder="Password"
              className="password"
              value={this.state.password}
              onChange={this.handlePasswordChange}
-             addonBefore={innerLockIcon} />
+             addonBefore={innerLockIcon}
+             required />
           <ButtonInput
              type="submit"
              className="form-control"
              bsStyle="danger"
-             disabled={this.props.isAuthenticating}
+             disabled={this.props.pending}
              value="Log in" block/>
           <ButtonInput
              onClick={this.props.actions.gotoRegisterPage}
@@ -73,7 +75,7 @@ class LoginFormComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticating: state.auth.isAuthenticating,
+  pending: state.auth.pending,
   statusText: state.auth.statusText
 });
 

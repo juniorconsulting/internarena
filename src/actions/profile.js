@@ -1,4 +1,5 @@
 import {PROFILE_API} from '../config';
+import {push} from 'react-router-redux';
 import {checkStatus, parseJSON, camelizeProps} from '../util/http';
 import * as types from '../constants';
 
@@ -49,6 +50,40 @@ export function getProfile(userid, token) {
       })
       .catch(error => {
         dispatch(getProfileDataFailure(error));
+      });
+  };
+}
+
+export function createProfileRequest() {
+  return {
+    type: types.CREATE_PROFILE_REQUEST
+  };
+}
+
+export function createProfileSuccess() {
+  return {
+    type: types.CREATE_PROFILE_SUCCESS
+  };
+}
+
+export function createProfile(userid, firstName, lastName) {
+  return dispatch => {
+    dispatch(createProfileRequest());
+    return fetch(PROFILE_API + '/profiles/', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({userid, firstName, lastName})
+    }).then(checkStatus)
+      .then(parseJSON)
+      .then(camelizeProps)
+      .then(json => {
+        // TODO: Do some validation
+        console.log(json);
+        dispatch(createProfileSuccess());
+        dispatch(push('/confirm-email'));
       });
   };
 }

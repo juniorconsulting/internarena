@@ -1,7 +1,8 @@
 import * as types from '../constants';
 import {push} from 'react-router-redux';
-import {checkStatus, parseJSON} from '../util/http';
+import {checkStatus, parseJSON, isHTTPError} from '../util/http';
 import {AUTH_API} from '../config';
+import {createProfile} from './profile';
 
 require('isomorphic-fetch');
 
@@ -62,6 +63,33 @@ export function logoutUserFailure(error) {
 export function gotoRegisterPage() {
   return function(dispatch) {
     dispatch(push('/register'));
+  };
+}
+
+export function registerUserRequest() {
+  return {
+    type: types.REGISTER_USER_REQUEST
+  };
+}
+
+export function registerUserSuccess() {
+  return {
+    type: types.REGISTER_USER_SUCCESS
+  };
+}
+
+export function registerUserFailure(error) {
+  if (isHTTPError(error)) {
+    return {
+      type: types.REGISTER_USER_FAILURE,
+      payload: {
+        none: "Something went wrong!"
+      }
+    };
+  }
+  return {
+    type: types.REGISTER_USER_FAILURE,
+    payload: error
   };
 }
 
@@ -132,14 +160,42 @@ export function logoutUser(token) {
     }).then(checkStatus)
       .then(parseJSON)
       .then(json => {
-        if (json.body !== 'User logged out') {
+        if (json.message !== 'User logged out.') {
           dispatch(logoutUserFailure({response: {status: 403, statusText: json.body}}));
+          return;
         }
         dispatch(logoutUserSuccess());
         dispatch(push('/'));
       })
       .catch(ex => {
         dispatch(logoutUserFailure(ex));
+      });
+  };
+}
+
+export function registerUser(username, email, password1, password2, firstName, lastName) {
+  return dispatch => {
+    dispatch(registerUserRequest());
+    return fetch(AUTH_API + '/register/', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({username, email, password1, password2})
+    }).then(checkStatus)
+      .then(parseJSON)
+      .then(json => {
+        if (json.username !== username) {
+          dispatch(registerUserFailure(json));
+          return;
+        }
+        dispatch(registerUserSuccess());
+        let userId = json.userid;
+        dispatch(createProfile(userId, firstName, lastName));
+      })
+      .catch(ex => {
+        dispatch(registerUserFailure(ex));
       });
   };
 }
