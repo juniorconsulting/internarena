@@ -6,8 +6,9 @@ class TimeLineComponent extends React.Component {
   render() {
     const innerUserIcon = <Glyphicon bsClass="glyphicon usericon" glyph="user" />;
     const timeIcon = <Glyphicon bsClass="glyphicon time" glyph="time" />;
+    /* eslint-disable */
     const image = "https://www.klm.com/travel/en/images/1BE3A2A3-BEB3-44E8-9399-DDA4A81E6FEA_tcm493-532775_456x456_80.jpg";
-
+    /* eslint-enable */
     return (
       <div className="container">
         <ul className="timeline">

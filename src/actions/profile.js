@@ -85,11 +85,13 @@ export function createProfile(userid, firstName, lastName) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      /* eslint-disable */
       body: JSON.stringify({
         auth_id: userid,
         first_name: firstName,
         last_name: lastName
       })
+      /* eslint-enable */
     }).then(checkStatus)
       .then(parseJSON)
       .then(camelizeProps)
