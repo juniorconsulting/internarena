@@ -52,10 +52,22 @@ describe('createProfile', () => {
   });
 
   it('creates REQUEST and SUCCESS', () => {
+    var sample_data = {
+      auth_id: 1,
+      first_name: "Ole",
+      last_name: "Hansen",
+      phone_nr: null,
+      bio_text: null,
+      fun_fact: null,
+      active: false,
+      title: null,
+      image: null
+    };
+
     nock(PROFILE_API)
       .post('/profiles/')
-      .reply(200, {profileId: 1});
-
+      .reply(200, sample_data);
+ 
     const expectedActions = [
       {type: types.CREATE_PROFILE_REQUEST},
       {type: types.CREATE_PROFILE_SUCCESS},

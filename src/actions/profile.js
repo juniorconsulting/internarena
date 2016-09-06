@@ -94,11 +94,11 @@ export function createProfile(userid, firstName, lastName) {
       .then(parseJSON)
       .then(camelizeProps)
       .then(json => {
-        if (json.auth_id === userid) {
+        if (json.authId === userid) {
           dispatch(createProfileSuccess());
           dispatch(push('/confirm-email'));
         } else {
-          dispatch(createProfileFailure(new Error('Wrong response from jrc-profile')));
+          dispatch(createProfileFailure(new Error(200, 'Wrong response from jrc-profile')));
         }
       })
       .catch(error => {
