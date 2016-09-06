@@ -94,7 +94,6 @@ export function createProfile(userid, firstName, lastName) {
       .then(parseJSON)
       .then(camelizeProps)
       .then(json => {
-        console.log(json);
         if (json.auth_id === userid) {
           dispatch(createProfileSuccess());
           dispatch(push('/confirm-email'));
