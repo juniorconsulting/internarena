@@ -36,38 +36,46 @@ class LoginFormComponent extends React.Component {
     const innerUserIcon = <Glyphicon bsClass="glyphicon usericon" glyph="user" />;
     const innerLockIcon = <Glyphicon bsClass="glyphicon lockicon" glyph="lock" />;
     return (
-      <form className="login-form" onSubmit={this.login.bind(this)}>
+      <form onSubmit={this.login.bind(this)}>
         {this.props.statusText ?
           <Alert bsStyle="danger">{this.props.statusText}</Alert> :
             null
           }
           <Input
              type="text"
-             placeholder="Brukernavn"
+             placeholder="Username"
              className="username"
              value={this.state.username}
              onChange={this.handleUsernameChange}
-             addonBefore={innerUserIcon} />
+             addonBefore={innerUserIcon}
+             required />
           <Input
              type="password"
-             placeholder="Passord"
+             placeholder="Password"
              className="password"
              value={this.state.password}
              onChange={this.handlePasswordChange}
-             addonBefore={innerLockIcon} />
+             addonBefore={innerLockIcon}
+             required />
           <ButtonInput
              type="submit"
              className="form-control"
              bsStyle="danger"
-             disabled={this.props.isAuthenticating}
-             value="Logg inn" block/>
+             disabled={this.props.pending}
+             value="Log in" block/>
+          <ButtonInput
+             onClick={this.props.actions.gotoRegisterPage}
+             className="form-control"
+             bsStyle="success"
+             value="Register"
+             block />
       </form>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  isAuthenticating: state.auth.isAuthenticating,
+  pending: state.auth.pending,
   statusText: state.auth.statusText
 });
 

@@ -9,7 +9,7 @@ describe('Auth reducer', () => {
       token: null,
       userid: null,
       isAuthenticated: false,
-      isAuthenticating: false,
+      pending: false,
       statusText: null
     };
 
@@ -21,7 +21,7 @@ describe('Auth reducer', () => {
       token: null,
       userid: null,
       isAuthenticated: false,
-      isAuthenticating: true,
+      pending: true,
       statusText: "Logging in."
     };
 
@@ -33,7 +33,7 @@ describe('Auth reducer', () => {
       token: 'token',
       userid: 1,
       isAuthenticated: true,
-      isAuthenticating: false,
+      pending: false,
       statusText: "You have been successfully logged in."
     };
 
@@ -48,7 +48,7 @@ describe('Auth reducer', () => {
       token: null,
       userid: null,
       isAuthenticated: false,
-      isAuthenticating: true,
+      pending: true,
       statusText: null
     };
 
@@ -56,7 +56,7 @@ describe('Auth reducer', () => {
       token: null,
       userid: null,
       isAuthenticated: false,
-      isAuthenticating: false,
+      pending: false,
       statusText: "Authentication error: 1 error."
     };
 
@@ -71,7 +71,7 @@ describe('Auth reducer', () => {
       token: 'token',
       userid: 1,
       isAuthenticated: true,
-      isAuthenticating: false,
+      pending: false,
       statusText: ""
     };
 
@@ -79,7 +79,7 @@ describe('Auth reducer', () => {
       token: 'token',
       userid: 1,
       isAuthenticated: true,
-      isAuthenticating: false,
+      pending: false,
       statusText: "Logging out."
     };
 
@@ -93,7 +93,7 @@ describe('Auth reducer', () => {
       token: 'token',
       userid: 1,
       isAuthenticated: true,
-      isAuthenticating: false,
+      pending: false,
       statusText: "Logging out."
     };
 
@@ -101,7 +101,7 @@ describe('Auth reducer', () => {
       token: null,
       userid: null,
       isAuthenticated: false,
-      isAuthenticating: false,
+      pending: false,
       statusText: "Successfully logged out."
     };
 
@@ -115,7 +115,7 @@ describe('Auth reducer', () => {
       token: 'token',
       userid: 1,
       isAuthenticated: true,
-      isAuthenticating: false,
+      pending: false,
       statusText: "Logging out."
     };
 
@@ -123,7 +123,7 @@ describe('Auth reducer', () => {
       token: 'token',
       userid: 1,
       isAuthenticated: true,
-      isAuthenticating: false,
+      pending: false,
       statusText: "Error logging out: 1 error."
     };
 
@@ -131,5 +131,75 @@ describe('Auth reducer', () => {
       type: types.LOGOUT_USER_FAILURE,
       payload: {status: 1, statusText: "error"}
     })).toEqual(expectedState);
+  });
+
+  it('handles REGISTER_USER_REQUEST', () => {
+    const previousState = {
+      token: null,
+      userid: null,
+      isAuthenticated: false,
+      pending: false,
+      statusText: null
+    };
+
+    const newState = {
+      token: null,
+      userid: null,
+      isAuthenticated: false,
+      pending: true,
+      statusText: null
+    };
+
+    expect(auth(previousState, {
+      type: types.REGISTER_USER_REQUEST
+    })).toEqual(newState);
+  });
+
+  it('handles REGISTER_USER_SUCCESS', () => {
+    const previousState = {
+      token: null,
+      userid: null,
+      isAuthenticated: false,
+      pending: true,
+      statusText: null
+    };
+
+    const newState = {
+      token: null,
+      userid: null,
+      isAuthenticated: false,
+      pending: false,
+      statusText: null
+    };
+
+    expect(auth(previousState, {
+      type: types.REGISTER_USER_SUCCESS
+    })).toEqual(newState);
+  });
+
+  it('handles REGISTER_USER_FAILURE', () => {
+    const previousState = {
+      token: null,
+      userid: null,
+      isAuthenticated: false,
+      pending: true,
+      statusText: null
+    };
+
+    const newState = {
+      token: null,
+      userid: null,
+      isAuthenticated: false,
+      pending: false,
+      statusText: "Error message 1,Error message 2"
+    };
+
+    expect(auth(previousState, {
+      type: types.REGISTER_USER_FAILURE,
+      payload: {
+        field1: ["Error message 1"],
+        field2: ["Error message 2"]
+      }
+    })).toEqual(newState);
   });
 });

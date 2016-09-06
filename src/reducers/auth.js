@@ -5,20 +5,20 @@ export const initialState = {
   token: null,
   userid: null,
   isAuthenticated: false,
-  isAuthenticating: false,
+  pending: false,
   statusText: null
 };
 
 export default createReducer(initialState, {
   [types.LOGIN_USER_REQUEST]: state => {
     return Object.assign({}, state, {
-      isAuthenticating: true,
+      pending: true,
       statusText: "Logging in."
     });
   },
   [types.LOGIN_USER_SUCCESS]: (state, payload) => {
     return Object.assign({}, state, {
-      isAuthenticating: false,
+      pending: false,
       isAuthenticated: true,
       token: payload.token,
       userid: payload.userid,
@@ -27,7 +27,7 @@ export default createReducer(initialState, {
   },
   [types.LOGIN_USER_FAILURE]: (state, payload) => {
     return Object.assign({}, state, {
-      isAuthenticating: false,
+      pending: false,
       isAuthenticated: false,
       token: null,
       userid: null,
@@ -46,11 +46,45 @@ export default createReducer(initialState, {
   },
   [types.LOGOUT_USER_SUCCESS]: state => {
     return Object.assign({}, state, {
-      isAuthenticating: false,
+      pending: false,
       isAuthenticated: false,
       token: null,
       userid: null,
       statusText: 'Successfully logged out.'
+    });
+  },
+  [types.REGISTER_USER_REQUEST]: state => {
+    return Object.assign({}, state, {
+      token: null,
+      userid: null,
+      isAuthenticated: false,
+      pending: true,
+      statusText: null
+    });
+  },
+  [types.REGISTER_USER_SUCCESS]: state => {
+    return Object.assign({}, state, {
+      token: null,
+      userid: null,
+      isAuthenticated: false,
+      pending: false,
+      statusText: null
+    });
+  },
+  [types.REGISTER_USER_FAILURE]: (state, payload) => {
+    let errorMessages = [];
+    for (var f in payload) {
+      if (!payload.hasOwnProperty(f)) {
+        continue;
+      }
+      errorMessages.push(payload[f]);
+    }
+    return Object.assign({}, state, {
+      token: null,
+      userid: null,
+      isAuthenticated: false,
+      pending: false,
+      statusText: errorMessages.join()
     });
   }
 });

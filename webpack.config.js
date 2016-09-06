@@ -12,7 +12,7 @@ function getEntrySources(sources) {
 }
 
 module.exports = {
-  devtool: process.env.NODE_ENV !== 'production' ? 'eval-source-map' : '',
+  devtool: process.env.NODE_ENV !== 'production' ? 'source-map' : '',
   entry: {
     bundle: getEntrySources([
       './src/index.js'
