@@ -66,6 +66,16 @@ export function createProfileSuccess() {
   };
 }
 
+export function createProfileFailure(error) {
+  return {
+    type: types.CREATE_PROFILE_FAILURE,
+    payload: {
+      status: error.response.status,
+      statusText: error.response.statusText
+    }
+  };
+}
+
 export function createProfile(userid, firstName, lastName) {
   return dispatch => {
     dispatch(createProfileRequest());
@@ -75,15 +85,25 @@ export function createProfile(userid, firstName, lastName) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({userid, firstName, lastName})
+      body: JSON.stringify({
+        auth_id: userid,
+        first_name: firstName,
+        last_name: lastName
+      })
     }).then(checkStatus)
       .then(parseJSON)
       .then(camelizeProps)
       .then(json => {
-        // TODO: Do some validation
         console.log(json);
-        dispatch(createProfileSuccess());
-        dispatch(push('/confirm-email'));
+        if (json.auth_id === userid) {
+          dispatch(createProfileSuccess());
+          dispatch(push('/confirm-email'));
+        } else {
+          dispatch(createProfileFailure(new Error('Wrong response from jrc-profile')));
+        }
+      })
+      .catch(error => {
+        dispatch(createProfileFailure(error));
       });
   };
 }
