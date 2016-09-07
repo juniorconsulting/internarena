@@ -10,7 +10,7 @@ class AuthPage extends React.Component {
     return (
       <div className="auth-container">
         <Grid>
-          <Col sm={6} smOffset={3} md={4} mdOffset={4} xs={8} xsOffset={2} className="auth-form">
+          <Col sm={6} smOffset={3} md={4} mdOffset={4} xs={12} className="auth-form">
             <Row>
               <img src={jrcLogo} alt="JrC Logo" className="img-responsive" id="logo" />
             </Row>
