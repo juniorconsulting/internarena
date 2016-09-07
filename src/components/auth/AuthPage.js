@@ -8,7 +8,7 @@ class AuthPage extends React.Component {
 
   render() {
     return (
-      <div className="auth-container">
+      <div className="auth-container clearfix">
         <Grid>
           <Col sm={6} smOffset={3} md={4} mdOffset={4} xs={12} className="auth-form">
             <Row>
