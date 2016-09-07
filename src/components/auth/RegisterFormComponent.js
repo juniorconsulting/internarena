@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input, Glyphicon, ButtonInput} from 'react-bootstrap';
+import {Input, Glyphicon, ButtonInput, Alert} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as authActionCreators from '../../actions/auth';
@@ -58,8 +58,21 @@ class RegisterFormComponent extends React.Component {
     const innerUserIcon = <Glyphicon bsClass="glyphicon usericon" glyph="user" />;
     const innerEmailIcon = <Glyphicon bsClass="glyphicon envelope" glyph="envelope" />;
     const innerKeyIcon = <Glyphicon bsClass="glyphicon lock" glyph="lock" />;
+    let errorMessages = null;
+    let messages = [];
+
+    if (this.props.statusText) {
+      this.props.statusText.split(',').forEach(function(message) {
+        messages.push(<li>{message}</li>);
+      });
+    }
+
     return (
       <form onSubmit={this.register.bind(this)}>
+        {errorMessages ?
+          <Alert bsStyle="danger">{messages}</Alert> :
+          null
+        }
         <Input
            type="text"
            placeholder="Username"
