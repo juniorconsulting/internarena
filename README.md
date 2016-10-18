@@ -5,7 +5,7 @@
 
 ## Setup
 
-* `git clone git@github.com:juniorconsulting/internarena.git`
+* `git clone git@git.jrc.no:open-source/internarena.git`
 * `npm install`
 * `npm run dev`
 
